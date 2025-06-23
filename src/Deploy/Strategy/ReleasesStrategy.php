@@ -41,12 +41,12 @@ class ReleasesStrategy implements StrategyInterface
         if (
             ($this->runtime->getBranch() || $this->runtime->getTag()) &&
             !$this->runtime->inRollback() &&
-            !in_array('git/change-branch', $tasks)
+            !in_array('git/change-branch', $tasks, true)
         ) {
             array_unshift($tasks, 'git/change-branch');
         }
 
-        if (!$this->runtime->inRollback() && !in_array('deploy/tar/prepare', $tasks)) {
+        if (!$this->runtime->inRollback() && !in_array('deploy/tar/prepare', $tasks, true)) {
             array_push($tasks, 'deploy/tar/prepare');
         }
 
@@ -58,11 +58,11 @@ class ReleasesStrategy implements StrategyInterface
         $this->checkStage(Runtime::ON_DEPLOY);
         $tasks = $this->runtime->getTasks();
 
-        if (!$this->runtime->inRollback() && !in_array('deploy/tar/copy', $tasks)) {
+        if (!$this->runtime->inRollback() && !in_array('deploy/tar/copy', $tasks, true)) {
             array_unshift($tasks, 'deploy/tar/copy');
         }
 
-        if (!$this->runtime->inRollback() && !in_array('deploy/release/prepare', $tasks)) {
+        if (!$this->runtime->inRollback() && !in_array('deploy/release/prepare', $tasks, true)) {
             array_unshift($tasks, 'deploy/release/prepare');
         }
 
@@ -74,7 +74,7 @@ class ReleasesStrategy implements StrategyInterface
         $this->checkStage(Runtime::ON_RELEASE);
         $tasks = $this->runtime->getTasks();
 
-        if (!in_array('deploy/release', $tasks)) {
+        if (!in_array('deploy/release', $tasks, true)) {
             array_unshift($tasks, 'deploy/release');
         }
 
@@ -86,7 +86,7 @@ class ReleasesStrategy implements StrategyInterface
         $this->checkStage(Runtime::POST_RELEASE);
         $tasks = $this->runtime->getTasks();
 
-        if (!in_array('deploy/release/cleanup', $tasks)) {
+        if (!in_array('deploy/release/cleanup', $tasks, true)) {
             array_unshift($tasks, 'deploy/release/cleanup');
         }
 
@@ -101,12 +101,12 @@ class ReleasesStrategy implements StrategyInterface
         if (
             ($this->runtime->getBranch() || $this->runtime->getTag()) &&
             !$this->runtime->inRollback() &&
-            !in_array('git/change-branch', $tasks)
+            !in_array('git/change-branch', $tasks, true)
         ) {
             array_unshift($tasks, 'git/change-branch');
         }
 
-        if (!$this->runtime->inRollback() && !in_array('deploy/tar/cleanup', $tasks)) {
+        if (!$this->runtime->inRollback() && !in_array('deploy/tar/cleanup', $tasks, true)) {
             array_unshift($tasks, 'deploy/tar/cleanup');
         }
 

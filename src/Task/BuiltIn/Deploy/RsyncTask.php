@@ -41,7 +41,7 @@ class RsyncTask extends AbstractTask
         $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
         $targetDir = rtrim($hostPath, '/');
 
-        if ($this->runtime->getEnvOption('releases', false)) {
+        if (false !== $this->runtime->getEnvOption('releases', false)) {
             throw new ErrorException('Can\'t be used with Releases, use "deploy/tar/copy"');
         }
 
@@ -67,7 +67,7 @@ class RsyncTask extends AbstractTask
     protected function getExcludes(): string
     {
         $excludes = $this->runtime->getMergedOption('exclude', []);
-        $excludes = array_merge(['.git'], array_filter($excludes));
+        $excludes = array_merge(['.git'], array_filter($excludes, fn ($item) => !empty($item)));
 
         foreach ($excludes as &$exclude) {
             $exclude = '--exclude=' . $exclude;

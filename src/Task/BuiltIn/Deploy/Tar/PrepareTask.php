@@ -34,7 +34,7 @@ class PrepareTask extends AbstractTask
 
     public function execute(): bool
     {
-        if (!$this->runtime->getEnvOption('releases', false)) {
+        if (false === $this->runtime->getEnvOption('releases', false)) {
             throw new ErrorException('This task is only available with releases enabled', 40);
         }
 
@@ -49,7 +49,7 @@ class PrepareTask extends AbstractTask
         );
         $from = $this->runtime->getEnvOption('from', './');
 
-        if ($this->runtime->getEnvOption('copyDirectory', false)) {
+        if (false !== $this->runtime->getEnvOption('copyDirectory', false)) {
             $from = sprintf('-C %s ./', $from);
         }
 
@@ -63,7 +63,7 @@ class PrepareTask extends AbstractTask
     protected function getExcludes(): string
     {
         $excludes = $this->runtime->getMergedOption('exclude', []);
-        $excludes = array_merge(['.git'], array_filter($excludes));
+        $excludes = array_merge(['.git'], array_filter($excludes, fn ($item) => !empty($item)));
 
         foreach ($excludes as &$exclude) {
             $exclude = '--exclude="' . $exclude . '"';

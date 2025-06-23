@@ -78,13 +78,13 @@ class DeployCommand extends AbstractCommand
             $output->writeln(sprintf('    Environment: <fg=green>%s</>', $this->runtime->getEnvironment()));
             $this->log(sprintf('Environment: %s', $this->runtime->getEnvironment()));
 
-            if ($this->runtime->getEnvOption('releases', false)) {
+            if (false !== $this->runtime->getEnvOption('releases', false)) {
                 $this->runtime->generateReleaseId();
                 $output->writeln(sprintf('    Release ID: <fg=green>%s</>', $this->runtime->getReleaseId()));
                 $this->log(sprintf('Release ID: %s', $this->runtime->getReleaseId()));
             }
 
-            if ($this->runtime->getConfigOption('log_file', false)) {
+            if (false !== $this->runtime->getConfigOption('log_file', false)) {
                 $output->writeln(sprintf('    Logfile: <fg=green>%s</>', $this->runtime->getConfigOption('log_file')));
             }
 
@@ -104,7 +104,7 @@ class DeployCommand extends AbstractCommand
                 $output->writeln(sprintf('    Tag: <fg=green>%s</>', $this->runtime->getEnvOption('tag')));
             }
 
-            if ($this->runtime->getEnvOption('branch', false)) {
+            if (false !== $this->runtime->getEnvOption('branch', false)) {
                 $output->writeln(sprintf('    Branch: <fg=green>%s</>', $this->runtime->getEnvOption('branch')));
             }
 
@@ -189,7 +189,7 @@ class DeployCommand extends AbstractCommand
      */
     protected function runTasks(OutputInterface $output, array $tasks): bool
     {
-        if (count($tasks) == 0) {
+        if (count($tasks) === 0) {
             $output->writeln(
                 sprintf('    No tasks defined for <fg=black;options=bold>%s</> stage', $this->getStageName())
             );
@@ -272,7 +272,7 @@ class DeployCommand extends AbstractCommand
         }
 
         $alertColor = 'red';
-        if ($succeededTasks == $totalTasks) {
+        if ($succeededTasks === $totalTasks) {
             $alertColor = 'green';
         }
 
@@ -287,7 +287,7 @@ class DeployCommand extends AbstractCommand
         );
         $output->writeln('');
 
-        return ($succeededTasks == $totalTasks);
+        return ($succeededTasks === $totalTasks);
     }
 
     /**

@@ -16,7 +16,7 @@ use Exception;
 use Mage\Tests\Runtime\RuntimeMockup;
 use PHPUnit\Framework\TestCase;
 
-class ChangeModeTest extends TestCase
+class ChangeModeTaskTest extends TestCase
 {
     public function testChangeModeTask()
     {

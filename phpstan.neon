@@ -1,4 +1,13 @@
+includes:
+    - phar://phpstan.phar/conf/bleedingEdge.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
 parameters:
-    level: 6
     paths:
         - src
+
+conditionalTags:
+    PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule:
+        phpstan.rules.rule: false

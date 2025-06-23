@@ -15,7 +15,7 @@ use Mage\Task\BuiltIn\ExecTask;
 use Mage\Tests\Runtime\RuntimeMockup;
 use PHPUnit\Framework\TestCase;
 
-class ExecTest extends TestCase
+class ExecTaskTest extends TestCase
 {
     public function testSimpleCommand()
     {

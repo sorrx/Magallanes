@@ -512,7 +512,7 @@ class Runtime
     {
         $strategy = new RsyncStrategy();
 
-        if ($this->getEnvOption('releases', false)) {
+        if (false !== $this->getEnvOption('releases', false)) {
             $strategy = new ReleasesStrategy();
         }
 

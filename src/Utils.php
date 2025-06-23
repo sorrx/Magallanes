@@ -83,7 +83,7 @@ class Utils
             return '';
         }
 
-        if ($diff->days == 7) {
+        if ($diff->days === 7) {
             return 'a week ago';
         }
 

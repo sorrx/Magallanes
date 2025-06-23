@@ -35,7 +35,7 @@ class UpdateTask extends AbstractTask
     public function execute(): bool
     {
         $options = $this->getOptions();
-        if ($options['tag']) {
+        if (!empty($options['tag'])) {
             throw new SkipException();
         }
 

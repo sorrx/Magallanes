@@ -35,7 +35,7 @@ class CachePoolClearTask extends AbstractSymfonyTask
     {
         $options = $this->getOptions();
 
-        if (!$options['pools']) {
+        if (empty($options['pools'])) {
             throw new ErrorException('Parameter "pools" is not defined');
         }
 

@@ -5,3 +5,5 @@ composer.lock
 .phpunit.result.cache
 .phpcs-cache
 .logs
+.idea
+.php-cs-fixer.cache

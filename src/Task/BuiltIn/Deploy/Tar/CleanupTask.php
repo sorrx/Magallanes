@@ -34,7 +34,7 @@ class CleanupTask extends AbstractTask
 
     public function execute(): bool
     {
-        if (!$this->runtime->getEnvOption('releases', false)) {
+        if (false === $this->runtime->getEnvOption('releases', false)) {
             throw new ErrorException('This task is only available with releases enabled', 40);
         }
 

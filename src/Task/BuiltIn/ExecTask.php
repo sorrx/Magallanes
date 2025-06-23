@@ -37,7 +37,7 @@ class ExecTask extends AbstractTask
     {
         $options = $this->getOptions();
 
-        if ($options['desc']) {
+        if (!empty($options['desc'])) {
             return '[Exec] ' . $options['desc'];
         }
 
@@ -53,7 +53,7 @@ class ExecTask extends AbstractTask
     {
         $options = $this->getOptions();
 
-        if (!$options['cmd']) {
+        if (empty($options['cmd'])) {
             throw new ErrorException('Parameter "cmd" is not defined');
         }
 
